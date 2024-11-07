@@ -7,7 +7,7 @@ try:
         host='localhost',      # Cambia esto si te conectas a un servidor remoto
         user='arturo',     # Usuario de MySQL
         password='Pword1',  # Contraseña de MySQL
-        database='pruebas'  # Base de datos que quieres usar
+        database='SemaforoInteligente'  # Base de datos que quieres usar
     )
     
     if conexion.is_connected():
@@ -17,7 +17,7 @@ try:
         cursor = conexion.cursor()
 
         # Ejecutar una consulta simple
-        consulta = "SELECT DATABASE();"  # Cambia esta consulta por la que necesites
+        consulta = "SELECT * FROM semaforo;"  # Cambia esta consulta por la que necesites
         cursor.execute(consulta)
         resultado = cursor.fetchone()
         print("Base de datos actual:", resultado[0])
