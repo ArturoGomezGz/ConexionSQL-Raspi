@@ -20,7 +20,7 @@ try:
         consulta = "SELECT * FROM Semaforo;"  # Cambia esta consulta por la que necesites
         cursor.execute(consulta)
         resultado = cursor.fetchone()
-        print("Base de datos actual:", resultado[0])
+        print("Base de datos actual:", resultado)
 
 except Error as e:
     print("Error al conectar a MySQL:", e)
