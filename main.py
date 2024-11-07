@@ -1,15 +1,33 @@
-import pyodbc
+import mysql.connector
+from mysql.connector import Error
 
-# Conectar a SQL Server
-conexion = pyodbc.connect(
-    'DRIVER={mariaDb};SERVER=localhost;DATABASE=pruebas;UID=arturo;PWD=Pword1'
-)
+try:
+    # Establecer conexión con MySQL
+    conexion = mysql.connector.connect(
+        host='localhost',      # Cambia esto si te conectas a un servidor remoto
+        user='arturo',     # Usuario de MySQL
+        password='Pword1',  # Contraseña de MySQL
+        database='pruebas'  # Base de datos que quieres usar
+    )
+    
+    if conexion.is_connected():
+        print("Conexión exitosa a MySQL")
 
-# Ejecutar una consulta
-cursor = conexion.cursor()
-cursor.execute("SELECT * FROM tu_tabla")
-for fila in cursor.fetchall():
-    print(fila)
+        # Crear un cursor para ejecutar consultas
+        cursor = conexion.cursor()
 
-# Cerrar la conexión
-conexion.close()
+        # Ejecutar una consulta simple
+        consulta = "SELECT DATABASE();"  # Cambia esta consulta por la que necesites
+        cursor.execute(consulta)
+        resultado = cursor.fetchone()
+        print("Base de datos actual:", resultado[0])
+
+except Error as e:
+    print("Error al conectar a MySQL:", e)
+
+finally:
+    # Cerrar la conexión a la base de datos
+    if conexion.is_connected():
+        cursor.close()
+        conexion.close()
+        print("Conexión a MySQL cerrada")
