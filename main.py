@@ -17,7 +17,7 @@ try:
         cursor = conexion.cursor()
 
         # Ejecutar una consulta simple
-        consulta = "SELECT * FROM semaforo;"  # Cambia esta consulta por la que necesites
+        consulta = "SELECT * FROM Semaforo;"  # Cambia esta consulta por la que necesites
         cursor.execute(consulta)
         resultado = cursor.fetchone()
         print("Base de datos actual:", resultado[0])
